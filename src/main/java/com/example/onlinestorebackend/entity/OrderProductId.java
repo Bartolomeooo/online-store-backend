@@ -15,6 +15,4 @@ public class OrderProductId implements Serializable {
         this.orderId = orderId;
         this.productId = productId;
     }
-
-    // Getters, setters, equals, and hashCode
 }

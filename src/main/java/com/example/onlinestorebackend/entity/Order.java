@@ -20,6 +20,13 @@ public class Order {
 
     private Date orderDate;
 
+    @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
+    private double totalPrice = 0.0;
+
+    @ManyToOne
+    @JoinColumn(name = "coupon_id", nullable = true)
+    private Coupon coupon;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
@@ -30,6 +37,11 @@ public class Order {
     public void addProduct(Product product, int quantity) {
         OrderProduct orderProduct = new OrderProduct(this, product, quantity);
         orderProducts.add(orderProduct);
+        totalPrice += product.getPrice() * quantity;
+    }
+
+    public void calculateTotalPriceWithCoupon() {
+        totalPrice *= (1 - coupon.getDiscount());
     }
 
     public Long getId() {
@@ -44,7 +56,7 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    // Można dodać więcej pól, np. status zamówienia, kwotę itp.
-
-    // Gettery, settery i konstruktory
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.onlinestorebackend.controllers;
 
+import com.example.onlinestorebackend.entity.Category;
 import com.example.onlinestorebackend.entity.Product;
 import com.example.onlinestorebackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+        return productService.createProduct(product);
     }
 
     @DeleteMapping("/{id}")

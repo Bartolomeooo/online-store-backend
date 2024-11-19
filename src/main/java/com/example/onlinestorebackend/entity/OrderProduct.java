@@ -28,7 +28,5 @@ public class OrderProduct {
         this.quantity = quantity;
         this.id = new OrderProductId(order.getId(), product.getId());
     }
-
-    // Getters and setters
 }
 

@@ -28,7 +28,7 @@ public class OrderController {
 
     @PostMapping
     public Order createOrder(@RequestBody OrderRequestDTO orderRequest) {
-        return orderService.createOrder(orderRequest.getUserId(), orderRequest.getProducts());
+        return orderService.createOrder(orderRequest.getUserId(), orderRequest.getProducts(), orderRequest.getCouponCode());
     }
 
     @DeleteMapping("/{id}")

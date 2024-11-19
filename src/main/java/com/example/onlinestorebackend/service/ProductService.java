@@ -1,6 +1,8 @@
 package com.example.onlinestorebackend.service;
 
+import com.example.onlinestorebackend.entity.Category;
 import com.example.onlinestorebackend.entity.Product;
+import com.example.onlinestorebackend.repository.CategoryRepository;
 import com.example.onlinestorebackend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
@@ -20,7 +25,7 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public Product saveProduct(Product product) {
+    public Product createProduct(Product product) {
         return productRepository.save(product);
     }
 

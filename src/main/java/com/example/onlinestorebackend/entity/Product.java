@@ -16,9 +16,11 @@ public class Product {
     private int quantity;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductCategory> productCategories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
