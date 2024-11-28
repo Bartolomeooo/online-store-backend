@@ -14,8 +14,8 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductCategory> productCategories = new ArrayList<>();
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products;
 
     public Long getId() {
         return id;

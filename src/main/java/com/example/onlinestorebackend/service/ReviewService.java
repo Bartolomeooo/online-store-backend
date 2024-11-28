@@ -43,6 +43,10 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
+    public List<Review> getReviewByProductId(Long userId) {
+        return reviewRepository.findByProductId(userId);
+    }
+
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }

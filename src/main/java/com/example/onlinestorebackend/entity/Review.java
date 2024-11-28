@@ -27,6 +27,14 @@ public class Review {
         this.id = id;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
     public void setContent(String content) {
         this.content = content;
     }

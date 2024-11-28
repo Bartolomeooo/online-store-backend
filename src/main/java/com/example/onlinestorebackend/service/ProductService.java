@@ -21,6 +21,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getProductsByCategory(Long categoryId) {
+        return productRepository.findByCategoriesId(categoryId);
+    }
+
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
