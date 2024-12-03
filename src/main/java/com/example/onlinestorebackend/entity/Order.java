@@ -41,7 +41,7 @@ public class Order {
     }
 
     public void calculateTotalPriceWithCoupon() {
-        totalPrice *= (1 - coupon.getDiscount());
+        totalPrice *= (1 - coupon.getDiscount() / 100);
     }
 
     public Long getId() {

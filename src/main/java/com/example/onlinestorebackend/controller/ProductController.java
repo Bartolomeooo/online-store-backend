@@ -1,6 +1,5 @@
-package com.example.onlinestorebackend.controllers;
+package com.example.onlinestorebackend.controller;
 
-import com.example.onlinestorebackend.entity.Category;
 import com.example.onlinestorebackend.entity.Product;
 import com.example.onlinestorebackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

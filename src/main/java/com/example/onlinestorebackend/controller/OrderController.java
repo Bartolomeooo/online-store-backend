@@ -1,14 +1,12 @@
-package com.example.onlinestorebackend.controllers;
+package com.example.onlinestorebackend.controller;
 
 import com.example.onlinestorebackend.DTO.OrderRequestDTO;
-import com.example.onlinestorebackend.DTO.ProductQuantityDTO;
 import com.example.onlinestorebackend.entity.Order;
 import com.example.onlinestorebackend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/orders")

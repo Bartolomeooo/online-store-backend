@@ -1,4 +1,4 @@
-package com.example.onlinestorebackend.controllers;
+package com.example.onlinestorebackend.controller;
 
 import com.example.onlinestorebackend.DTO.ReviewRequestDTO;
 import com.example.onlinestorebackend.entity.Review;
