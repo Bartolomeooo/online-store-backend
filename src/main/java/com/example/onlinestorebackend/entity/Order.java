@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class Order {
     @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
     private double totalPrice = 0.0;
 
+    @Getter
     @ManyToOne
     @JoinColumn(name = "coupon_id", nullable = true)
     private Coupon coupon;
@@ -58,5 +61,9 @@ public class Order {
 
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

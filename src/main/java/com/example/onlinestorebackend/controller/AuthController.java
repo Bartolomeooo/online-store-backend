@@ -42,10 +42,10 @@ public class AuthController {
             if (userService.existsByEmail(registrationDTO.getEmail())) {
                 return ResponseEntity.badRequest().body("Email already taken.");
             }
-            userService.registerUser(registrationDTO); // Dodanie użytkownika
+            userService.registerUser(registrationDTO);
             return ResponseEntity.ok("User registered successfully!");
         } catch (Exception e) {
-            e.printStackTrace(); // Logowanie błędu na serwerze
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Registration failed.");
         }
     }

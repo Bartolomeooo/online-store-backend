@@ -13,13 +13,13 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository userRepository;
+    public UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public PasswordEncoder passwordEncoder;
 
     @Autowired
-    private RoleService roleService;
+    public RoleService roleService;
 
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
@@ -29,12 +29,11 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
     public void registerUser(UserRegistrationDTO registrationDTO) {
-        // Tworzenie nowego użytkownika na podstawie DTO
         User newUser = new User();
         newUser.setUsername(registrationDTO.getUsername());
         newUser.setEmail(registrationDTO.getEmail());
-        newUser.setPassword(passwordEncoder.encode(registrationDTO.getPassword())); // Haszowanie hasła
-        newUser.setRole(roleService.findByName("CUSTOMER").get()); // Domyślna rola
+        newUser.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
+        newUser.setRole(roleService.findByName("CUSTOMER").get());
         userRepository.save(newUser);
     }
     public List<User> getAllUsers() {
