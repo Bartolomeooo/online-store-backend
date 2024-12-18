@@ -1,5 +1,7 @@
 package com.example.onlinestorebackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date orderDate;
 
     @Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
@@ -30,7 +33,8 @@ public class Order {
     @JoinColumn(name = "coupon_id", nullable = true)
     private Coupon coupon;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @ManyToOne
@@ -49,6 +53,18 @@ public class Order {
 
     public Long getId() {
         return id;
+    }
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
     }
 
     public void setUser(User user) {

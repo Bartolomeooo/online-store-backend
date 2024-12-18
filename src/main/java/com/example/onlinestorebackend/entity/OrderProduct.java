@@ -1,5 +1,6 @@
 package com.example.onlinestorebackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -12,6 +13,7 @@ public class OrderProduct {
 
     @ManyToOne
     @MapsId("orderId")
+    @JsonBackReference
     private Order order;
 
     @ManyToOne
@@ -27,6 +29,18 @@ public class OrderProduct {
         this.product = product;
         this.quantity = quantity;
         this.id = new OrderProductId(order.getId(), product.getId());
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 }
 

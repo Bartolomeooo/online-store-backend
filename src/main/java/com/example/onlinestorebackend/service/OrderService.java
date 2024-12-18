@@ -70,5 +70,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-
+    public List<Order> getOrdersByUser(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
 }
