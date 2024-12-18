@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -56,12 +58,14 @@ public class AuthController {
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password."));
 
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-            System.out.println(passwordEncoder.encode("cisco"));
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password.");
         }
 
-        String token = jwtUtils.generateToken(user.getUsername(), user.getRole());
-        return ResponseEntity.ok(new JwtResponseDTO(token));
+        String token = jwtUtils.generateToken(user.getUsername(), user.getRole().getName());
+        return ResponseEntity.ok(Map.of(
+                "token", token,
+                "role", user.getRole().getName() // Dodanie roli do odpowiedzi
+        ));
     }
 
 }

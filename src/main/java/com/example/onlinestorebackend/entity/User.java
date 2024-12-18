@@ -30,8 +30,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    public String getRole() {
-        return role.toString();
+    public Role getRole() {
+        return role;
     }
 
     public void setRole(Role role) {
