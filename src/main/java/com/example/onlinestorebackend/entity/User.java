@@ -14,6 +14,7 @@ public class User {
 
     @Setter
     @Getter
+    @Column(nullable = false, unique = true)
     private String username;
     private String email;
     @Setter
