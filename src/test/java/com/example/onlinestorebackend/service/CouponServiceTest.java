@@ -79,6 +79,29 @@ class CouponServiceTest {
     }
 
     @Test
+    void testCanUserUseCoupon_LimitExceeded() {
+        User user = new User();
+        user.setId(1L);
+
+        Coupon coupon = new Coupon();
+        coupon.setCode("DISCOUNT10");
+        coupon.setUsageLimit(2);
+
+        CouponUsage usage = new CouponUsage();
+        usage.setUser(user);
+        usage.setCoupon(coupon);
+        usage.setUsageCount(3); // Przekroczono limit użyć
+
+        when(couponUsageRepository.findByUserAndCoupon(user, coupon)).thenReturn(Optional.of(usage));
+
+        boolean canUse = couponService.canUserUseCoupon(user, coupon);
+
+        // Celowo błędny test - oczekujemy, że użytkownik nadal może użyć kuponu
+        assertTrue(canUse, "Użytkownik nie powinien móc użyć kuponu, gdy przekroczono limit");
+        verify(couponUsageRepository, times(1)).findByUserAndCoupon(user, coupon);
+    }
+
+    @Test
     void testCanUserUseCoupon_ExistingUsage_WithinLimit() {
         User user = new User();
         user.setId(1L);
